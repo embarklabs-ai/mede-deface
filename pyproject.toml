@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "mede-deface-xnat"
+version = "0.0.2"
+description = "MEDE defacing container for XNAT Container Service"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "mede==0.0.6",
+]
