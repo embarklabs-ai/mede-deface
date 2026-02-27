@@ -38,6 +38,9 @@ Mounts images from DICOM resource to `/input/dicoms` (not `/input` directly — 
   - Single Scan: **Navigate to a scan with a DICOM resource → Run Containers → MEDE Deface**
   - Batch Scans: **Navigate to a project → Processing Dashboard → Filter on targeted image modality → MEDE Deface**
 
+### Supported modalities
+Defacing only works on **MR** and **CT** head scans. Other modalities (e.g. ultrasound) will produce nonsensical output or crash during NIfTI conversion. Filter your input by DICOM Modality tag before running the container.
+
 ## Gotchas
 
 ### MEDE requires a nested input directory
