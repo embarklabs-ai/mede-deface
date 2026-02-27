@@ -8,7 +8,6 @@ import sys
 import time
 import logging
 
-import shm_fix  # noqa: F401 — must run before any torch import
 import torch
 
 from pathlib import Path

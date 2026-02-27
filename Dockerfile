@@ -7,9 +7,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt && rm /tmp/requirements.txt
 
-# Install scripts
+# Installed as sitecustomize.py so CPython runs it on every interpreter startup
+#! Update this path appropriately if base image is updated!
+COPY utils/shm_fix.py /opt/conda/lib/python3.10/sitecustomize.py
+
+# Install entrypoint script
 RUN mkdir -p /scripts
-COPY utils/shm_fix.py /scripts/shm_fix.py
 COPY entrypoint.py /scripts/entrypoint.py
 
 # Create mount points

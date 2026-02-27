@@ -49,7 +49,7 @@ MEDE expects a parent directory containing a subdirectory of DICOMs so it can pa
 **Fix:** The mount path is `/input/dicoms` (not `/input`). The entrypoint passes `/input` to MEDE, which discovers `dicoms/` as a subdirectory and assembles the volume correctly.
 
 ### `/dev/shm` bus errors in PyTorch DataLoader
-Docker's default 64 MB `/dev/shm` is too small for PyTorch's shared-memory tensor transfer between DataLoader workers, causing `bus error` crashes during inference. The entrypoint imports `shm_fix.py` before any torch usage, switching PyTorch to file-descriptor-based sharing (`file_system` strategy) that uses `/tmp` instead of `/dev/shm`.
+Docker's default 64 MB `/dev/shm` is too small for PyTorch's shared-memory tensor transfer between DataLoader workers, causing `bus error` crashes during inference. The container installs `utils/shm_fix.py` as `sitecustomize.py` in the Python site-packages directory. CPython automatically runs `sitecustomize` on every interpreter startup — including spawned DataLoader workers — switching PyTorch to file-descriptor-based sharing (`file_system` strategy) that uses `/tmp` instead of `/dev/shm`.
 
 ### Memory requirements
 The XNAT command reserves 8 GB and limits at 16 GB (`command.json`). CPU inference on a full 3D volume typically uses 8–12 GB RAM. XNAT admins should ensure the Docker host has at least 16 GB available for the container.
