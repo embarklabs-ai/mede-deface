@@ -2,9 +2,9 @@
   "name": "mede-deface",
   "label": "MEDE Deface",
   "description": "Remove facial features from head MRI/CT scans using MedNeXt neural network defacing",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "schema-version": "1.0",
-  "image": "maxwellthorpe/mede-deface:0.0.2",
+  "image": "maxwellthorpe/mede-deface:0.0.5",
   "type": "docker",
   "command-line": "python /scripts/entrypoint.py /input /output",
   "override-entrypoint": true,
@@ -56,7 +56,7 @@
           "name": "scan-dicoms",
           "description": "The DICOM resource on the scan",
           "type": "Resource",
-          "matcher": "@.label == 'DICOM'",
+          "matcher": "@.label == 'DICOM' || @.label == 'SECONDARY'",
           "required": true,
           "provides-files-for-command-mount": "in",
           "load-children": true,
@@ -77,8 +77,11 @@
   ],
   "reserve-memory": 8192,
   "limit-memory": 16384,
+  "shm-size": 2147483648,
   "container-labels": {},
-  "generic-resources": {},
+  "generic-resources": {
+    "gpu": "1"
+  },
   "ulimits": {},
   "secrets": []
 }
