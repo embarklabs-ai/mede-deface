@@ -33,7 +33,7 @@ Run the container form the scan context:
   - Batch Scans: **Navigate to a project → Processing Dashboard → Filter on targeted image modality → MEDE Deface**
 
 ### Supported modalities
-Defacing only works on **MR** and **CT** head scans. Other modalities (e.g. ultrasound) will produce nonsensical output or crash during NIfTI conversion. Filter your input by DICOM Modality tag before running the container.
+Defacing only works on **MR** and **CT** head scans. Other modalities (e.g. ultrasound) are not supported. 
 
 
 ### Memory requirements
